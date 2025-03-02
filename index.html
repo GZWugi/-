@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- PWA 配置 -->
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#07c160"> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2025年水轮值日查询</title>
@@ -44,7 +47,7 @@
         <div id="dayAfterTomorrow" class="result">加载中...</div>
         <div id="day3" class="result">加载中...</div>
         <hr>
-        <h3>选择日期查询</h3>
+        <h3>点开下面的日历，选择日期查询</h3>
         <input type="date" id="datePicker" min="2025-01-01" max="2025-12-31">
         <div id="customResult" class="result">请选择日期</div>
     </div>
