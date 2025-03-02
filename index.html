@@ -39,9 +39,9 @@ html
                const startDate = new Date(2025, 0, 1); // 2025年1月1日
                const dayOfYear = Math.floor((today - startDate) / 86400000) + 1;
                const remainder = (dayOfYear - 1) % 4;
-               let team = "渭南庄";
-               if (remainder === 0 || remainder === 1) team = "铧咀";
-               else if (remainder === 2) team = "上院子";
+               let team = "上院子";
+               if (remainder === 0 || remainder === 1) team = "渭南庄";
+               else if (remainder === 2) team = "铧咀";
                document.getElementById("result").innerHTML = `
                    <p>今天是：${today.toLocaleDateString()}</p >
                    <p style="color: #07c160; font-weight: bold;">水轮值日小组是：${team}</p >
