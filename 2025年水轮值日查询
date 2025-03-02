@@ -4,7 +4,7 @@ html
    <head>
        <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>2025值日查询</title>
+       <title>2025水轮值日查询</title>
        <style>
            body { 
                font-family: -apple-system, sans-serif; 
@@ -25,7 +25,7 @@ html
    </head>
    <body>
        <div class="container">
-           <h2>2025年值日查询</h2>
+           <h2>2025年水轮值日查询</h2>
            <div id="result">加载中...</div>
        </div>
        <script>
@@ -39,12 +39,12 @@ html
                const startDate = new Date(2025, 0, 1); // 2025年1月1日
                const dayOfYear = Math.floor((today - startDate) / 86400000) + 1;
                const remainder = (dayOfYear - 1) % 4;
-               let team = "第三队";
-               if (remainder === 0 || remainder === 1) team = "第一队";
-               else if (remainder === 2) team = "第二队";
+               let team = "渭南庄";
+               if (remainder === 0 || remainder === 1) team = "铧咀";
+               else if (remainder === 2) team = "上院子";
                document.getElementById("result").innerHTML = `
                    <p>今天是：${today.toLocaleDateString()}</p >
-                   <p style="color: #07c160; font-weight: bold;">值日队伍：${team}</p >
+                   <p style="color: #07c160; font-weight: bold;">水轮值日小组是：${team}</p >
                `;
            }
            window.onload = getDutyTeam;
