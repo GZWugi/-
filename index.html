@@ -1,61 +1,101 @@
-html
-   <!DOCTYPE html>
-   <html>
-   <head>
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>2025年水轮值日查询</title>
-       <style>
-           body { 
-               font-family: -apple-system, sans-serif; 
-               text-align: center; 
-               padding: 20px; 
-               background: #f0f0f0;
-           }
-           .container {
-               background: white;
-               border-radius: 15px;
-               padding: 30px;
-               margin: 20px;
-               box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-           }
-           h2 { color: #07c160; }
-           #result { font-size: 20px; margin: 20px 0; }
-       </style>
-   </head>
-   <body>
-       <div class="container">
-           <h2>2025年水轮值日查询</h2>
-           <div id="result">加载中...</div>
-       </div>
-       <script>
-           function getDutyTeam() {
-               const today = new Date();
-               const year = today.getFullYear();
-               if (year !== 2025) {
-                   document.getElementById("result").innerHTML = "⚠️ 仅支持2025年查询";
-                   return;
-               }
-               const startDate = new Date(2025, 0, 1); // 2025年1月1日
-               const dayOfYear = Math.floor((today - startDate) / 86400000) + 1;
-               const remainder = (dayOfYear - 1) % 4;
-               let team = "上院子";
-               if (remainder === 0 || remainder === 1) team = "渭南庄";
-               else if (remainder === 2) team = "铧咀";
-               document.getElementById("result").innerHTML = `
-                   <p>今天是：${today.toLocaleDateString()}</p >
-                   <p style="color: #07c160; font-weight: bold;">水轮值日小组是：${team}</p >
-               `;
-           }
-            <p>明天是：${tomorrow.toLocaleDateString()}</p >
-                   <p style="color: #07c160; font-weight: bold;">水轮值日小组是：${team}</p >
-               `;
-           }
-            <p>后天是：${the day after tomorrow.toLocaleDateString()}</p >
-                   <p style="color: #07c160; font-weight: bold;">水轮值日小组是：${team}</p >
-               `;
-           }
-          window.onload = getDutyTeam;
-       </script>
-   </body>
-   </html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年水轮值日查询</title>
+    <style>
+        body {
+            font-family: -apple-system, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 { color: #07c160; }
+        .result {
+            font-size: 18px;
+            margin: 15px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+        input[type="date"] {
+            font-size: 16px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>2025年水轮值日查询</h2>
+        <div id="today" class="result">加载中...</div>
+        <div id="tomorrow" class="result">加载中...</div>
+        <div id="dayAfterTomorrow" class="result">加载中...</div>
+        <hr>
+        <h3>选择日期查询</h3>
+        <input type="date" id="datePicker" min="2025-01-01" max="2025-12-31">
+        <div id="customResult" class="result">请选择日期</div>
+    </div>
+    <script>
+        function getDutyTeam(date) {
+            const startDate = new Date(2025, 0, 1); // 2025年1月1日
+            const dayOfYear = Math.floor((date - startDate) / 86400000) + 1;
+            const remainder = (dayOfYear - 1) % 4;
+            if (remainder === 0 || remainder === 1) return "魏南庄";
+            else if (remainder === 2) return "铧咀";
+            else return "上院子";
+        }
+
+        function updateResults() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+            const dayAfterTomorrow = new Date(today);
+            dayAfterTomorrow.setDate(today.getDate() + 2);
+
+            // 检查年份是否为2025
+            if (today.getFullYear() !== 2025) {
+                document.getElementById("today").innerHTML = "⚠️ 仅支持2025年查询";
+                return;
+            }
+
+            // 更新结果
+            document.getElementById("today").innerHTML = `
+                <strong>今天</strong>（${today.toLocaleDateString()}）：${getDutyTeam(today)}
+            `;
+            document.getElementById("tomorrow").innerHTML = `
+                <strong>明天</strong>（${tomorrow.toLocaleDateString()}）：${getDutyTeam(tomorrow)}
+            `;
+            document.getElementById("dayAfterTomorrow").innerHTML = `
+                <strong>后天</strong>（${dayAfterTomorrow.toLocaleDateString()}）：${getDutyTeam(dayAfterTomorrow)}
+            `;
+        }
+
+        function updateCustomDate() {
+            const selectedDate = new Date(document.getElementById("datePicker").value);
+            if (selectedDate.getFullYear() !== 2025) {
+                document.getElementById("customResult").innerHTML = "⚠️ 仅支持2025年查询";
+                return;
+            }
+            document.getElementById("customResult").innerHTML = `
+                <strong>${selectedDate.toLocaleDateString()}</strong> 的值日队伍：${getDutyTeam(selectedDate)}
+            `;
+        }
+
+        // 初始化
+        window.onload = updateResults;
+        document.getElementById("datePicker").addEventListener("change", updateCustomDate);
+    </script>
+</body>
+</html>
