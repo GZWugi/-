@@ -42,6 +42,7 @@
         <div id="today" class="result">加载中...</div>
         <div id="tomorrow" class="result">加载中...</div>
         <div id="dayAfterTomorrow" class="result">加载中...</div>
+        <div id="day3" class="result">加载中...</div>
         <hr>
         <h3>选择日期查询</h3>
         <input type="date" id="datePicker" min="2025-01-01" max="2025-12-31">
@@ -63,6 +64,8 @@
             tomorrow.setDate(today.getDate() + 1);
             const dayAfterTomorrow = new Date(today);
             dayAfterTomorrow.setDate(today.getDate() + 2);
+            const day3 = new Date(today);
+            day3.setDate(today.getDate() + 3);
 
             // 检查年份是否为2025
             if (today.getFullYear() !== 2025) {
@@ -79,6 +82,9 @@
             `;
             document.getElementById("dayAfterTomorrow").innerHTML = `
                 <strong>后天</strong>（${dayAfterTomorrow.toLocaleDateString()}）：${getDutyTeam(dayAfterTomorrow)}
+            `;
+            document.getElementById("day3").innerHTML = `
+                <strong>大后天</strong>（${day3.toLocaleDateString()}）：${getDutyTeam(day3)}
             `;
         }
 
