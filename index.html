@@ -4,7 +4,7 @@ html
    <head>
        <meta charset="UTF-8">
        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <title>2025水轮值日查询</title>
+       <title>2025年水轮值日查询</title>
        <style>
            body { 
                font-family: -apple-system, sans-serif; 
@@ -47,7 +47,15 @@ html
                    <p style="color: #07c160; font-weight: bold;">水轮值日小组是：${team}</p >
                `;
            }
-           window.onload = getDutyTeam;
+            <p>明天是：${tomorrow.toLocaleDateString()}</p >
+                   <p style="color: #07c160; font-weight: bold;">水轮值日小组是：${team}</p >
+               `;
+           }
+            <p>后天是：${the day after tomorrow.toLocaleDateString()}</p >
+                   <p style="color: #07c160; font-weight: bold;">水轮值日小组是：${team}</p >
+               `;
+           }
+          window.onload = getDutyTeam;
        </script>
    </body>
    </html>
