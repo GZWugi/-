@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+   <html>
+   <head>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>2025年水轮值日查询</title>
+       <script>
+           function calculateTeam() {
+               const today = new Date();
+               const year = today.getFullYear();
+               if (year !== 2025) {
+                   document.getElementById("result").innerHTML = "仅支持2025年日期";
+                   return;
+               }
+               const start = new Date(2025, 0, 1); // 2025年1月1日
+               const diff = today - start;
+               const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24)) + 1;
+               const remainder = (dayOfYear - 1) % 4;
+               let team = "魏南庄";
+               if (remainder === 0 || remainder === 1) team = "铧咀";
+               else if (remainder === 2) team = "上院子";
+               document.getElementById("result").innerHTML = 
+                   `今天是 ${today.toLocaleDateString()}<br>值日小组：<strong>${team}</strong>`;
+           }
+       </script>
+   </head>
+   <body onload="calculateTeam()" style="text-align:center;padding:20px;">
+       <h2>2025年水轮值日查询</h2>
+       <div id="result"></div>
+   </body>
+   </html>
