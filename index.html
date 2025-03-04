@@ -38,6 +38,17 @@
   <!-- PWA 配置 -->
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#07c160"> 
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+      .then((registration) => {
+        console.log('Service Worker 注册成功:', registration);
+      })
+      .catch((error) => {
+        console.log('Service Worker 注册失败:', error);
+      });
+  }
+</script>
 </head>
 <body>
     <div class="container">
