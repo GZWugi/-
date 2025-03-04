@@ -1,6 +1,6 @@
 {
   "name": "2025年水轮值日查询",
-  "short_name": "水轮值日查询",
+  "short_name": "值日查询",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
